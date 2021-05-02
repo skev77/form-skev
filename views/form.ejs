@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Formulário HTML/JS - Ruan Silva de Carvalho - II3 </title>
+    <meta name="description" content="Aprenda a criar um site com formulários em HTML">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <style>
+        .box {
+            width: 190px;
+        }
+    </style>
+
+    <script>
+        function checkNumber(n) {
+            return !isNaN(parseFloat(n)) && isFinite(n);
+        }
+        function checkSpecial(s) {
+            const regex = /[&\/\\#,+()$~%.!'":*?<>{}_-]/.test(s);
+            return regex;
+        }
+        function specialEmail(se) {
+            const regex2 = /[&\/\\#,+()$~%!'":*?<>{}-]/.test(se);
+            return regex2;
+        }
+
+        function validar() {
+            var nome = form1.nome.value;
+            if (nome == "" || nome.length < 3 || checkNumber(nome) || checkSpecial(nome)) {
+                alert('Preencha o campo com seu nome (mínimo: 3 letras)');
+                if (checkNumber(nome)) {
+                    alert("Digite apenas letras!");
+                }
+                if (checkSpecial(nome)) {
+                    alert("Não digite caracteres especiais!");
+                }
+                form1.nome.focus();
+                form1.nome.style.background = "#FF6347";
+                return false;
+            }
+            var sobrenome = form1.sobrenome.value;
+            if (sobrenome == "" || sobrenome.length < 4 || checkNumber(sobrenome) || checkSpecial(sobrenome)) {
+                alert('Preencha o campo com o seu sobrenome');
+                if (checkNumber(sobrenome)) {
+                    alert("Digite apenas letras!");
+                }
+                if (checkSpecial(sobrenome)) {
+                    alert("Não digite caracteres especiais!");
+                }
+                form1.sobrenome.focus();
+                form1.sobrenome.style.background = "#FF6347";
+                return false;
+            }
+            var rg = form1.rg.value;
+            if (rg == "" || rg.length < 9 || !checkNumber(rg) || checkSpecial(rg)) {
+                alert('Preencha o campo com o seu RG');
+                if (!checkNumber(rg)) {
+                    alert("Digite apenas números!");
+                }
+                if (checkSpecial(rg)) {
+                    alert("Não digite caracteres especiais!");
+                }
+                form1.rg.focus();
+                form1.rg.style.background = "#FF6347";
+                return false;
+            }
+            var rua = form1.rua.value;
+            if (rua == "" || rua.length < 8 || checkNumber(rua) || checkSpecial(rua)) {
+                alert('Preencha o campo com o nome da sua rua (exemplo: Rua das Castanhas)');
+                if (checkNumber(rua)) {
+                    alert("Digite apenas letras!");
+                }
+                if (checkSpecial(rua)) {
+                    alert("Não digite caracteres especiais!");
+                }
+                form1.rua.focus();
+                form1.rua.style.background = "#FF6347";
+                return false;
+            }
+            var numero = form1.numero.value;
+            if (numero == "" || !checkNumber(numero) || checkSpecial(numero)) {
+                alert('Preencha o campo com o número de sua casa');
+                if (!checkNumber(numero)) {
+                    alert("Digite apenas números!");
+                }
+                if (checkSpecial(numero)) {
+                    alert("Não digite caracteres especiais!");
+                }
+                form1.numero.focus();
+                form1.numero.style.background = "#FF6347";
+                return false;
+            }
+            var bairro = form1.bairro.value;
+            if (bairro == "" || bairro.length < 6 || checkNumber(bairro) || checkSpecial(bairro)) {
+                alert('Preencha o campo com o nome do seu bairro (exemplo: Centro)');
+                if (checkNumber(bairro)) {
+                    alert("Digite apenas letras!");
+                }
+                if (checkSpecial(bairro)) {
+                    alert("Não digite caracteres especiais!");
+                }
+                form1.bairro.focus();
+                form1.bairro.style.background = "#FF6347";
+                return false;
+            }
+            var cidade = form1.cidade.value;
+            if (cidade == "" || cidade.length < 4 || checkNumber(cidade) || checkSpecial(cidade)) {
+                alert('Preencha o campo com o nome da sua cidade');
+                if (checkNumber(cidade)) {
+                    alert("Digite apenas letras!");
+                }
+                if (checkSpecial(cidade)) {
+                    alert("Não digite caracteres especiais!");
+                }
+                form1.cidade.focus();
+                form1.cidade.style.background = "#FF6347";
+                return false;
+            }
+            var email = form1.email.value;
+            var usuario = email.substring(0, email.indexOf("@"));
+            var dominio = email.substring(email.indexOf("@") + 3, email.length);
+            var endereco = email.substring(email.indexOf(".") + 3, email.length);
+            if ((usuario.length >= 3) &&
+                (dominio.length >= 3) &&
+                (endereco.length >= 3) &&
+                (usuario.search("@") == -1) &&
+                (dominio.search("@") == -1) &&
+                (endereco.search("@") == -1) &&
+                (usuario.search(" ") == -1) &&
+                (dominio.search(" ") == -1) &&
+                (endereco.search(" ") == -1) &&
+                (dominio.search(".") != -1) &&
+                (endereco.search(".") != -1) &&
+                (dominio.indexOf(".") >= 1) &&
+                (endereco.indexOf(".") >= 1) &&
+                (dominio.lastIndexOf(".") < dominio.length - 1) &&
+                (endereco.lastIndexOf(".") < endereco.length - 1) ||
+                (specialEmail(email))) {
+            } else {
+                form1.email.focus();
+                form1.email.style.background = "#FF6347";
+                alert("E-mail inválido!");
+                return false;
+            }
+            if (specialEmail(email)) {
+                form1.email.focus();
+                form1.email.style.background = "#FF6347";
+                alert("Não digite caracteres especiais!");
+                return false;
+            }
+            var login = form1.login.value;
+            if (login == "" || login.length < 3 || checkSpecial(login)) {
+                alert('Preencha o campo com o seu nome de usuário (mínimo de 3 dígitos)');
+                if (checkSpecial(login)) {
+                    alert("Não digite caracteres especiais!");
+                }
+                form1.login.focus();
+                form1.login.style.background = "#FF6347";
+                return false;
+            }
+            var senha = form1.senha.value;
+            if (senha == "" || senha.length < 6) {
+                alert('Preencha o campo com a sua senha (mínimo de 6 dígitos)');
+                form1.senha.focus();
+                form1.senha.style.background = "#FF6347";
+                return false;
+            }
+            var confirmaSenha = form1.confirmaSenha.value;
+            if (confirmaSenha == "" || confirmaSenha.length < 6) {
+                alert('Repita a sua senha!');
+                if (senha != confirmaSenha) {
+                    alert("Senhas diferentes! Digite senhas iguais");
+                }
+                form1.confirmaSenha.focus();
+                form1.confirmaSenha.style.background = "#FF6347";
+                return false;
+            }
+            var esporte = form1.esporte.value;
+            if (esporte == "" || esporte.length < 3 || checkNumber(esporte) || checkSpecial(rua)) {
+                alert('Preencha o campo com o nome de seu esporte (mínimo de 3 letras)');
+                if (checkNumber(esporte)) {
+                    alert("Digite apenas letras!");
+                }
+                if (checkSpecial(esporte)) {
+                    alert("Não digite caracteres especiais!");
+                }
+                form1.esporte.focus();
+                form1.esporte.style.background = "#FF6347";
+                return false;
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1> HTML/JS com formulário</h1>
+    <h2> Preencha o formulário abaixo:</h2><br>
+
+    <form id="form1" name="form1" action="formulario" method="POST" autocomplete="on" onsubmit="return validar()">
+
+        <!-- DADOS PESSOAIS-->
+
+        <fieldset>
+
+            <legend>Dados Pessoais</legend>
+            <table cellspacing="10">
+                <tr>
+                    <td>
+                        <label for="nome">Nome: </label>
+                    </td>
+                    <td align="left">
+                        <input type="text" id="nome" name="nome" value="Asdrubal Eustáquio" size="15" autocomplete="off"
+                            required autofocus placeholder="Digite o seu nome"
+                            pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="sobrenome">Sobrenome: </label>
+                    </td>
+                    <td align="left">
+                        <input type="text" name="sobrenome" placeholder="Digite o seu sobrenome"
+                            pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$">
+                    </td>
+                <tr>
+                    <td>
+                        <label for="rg">RG: </label>
+                    </td>
+                    <td align="left">
+                        <input type="text" name="rg" size="9" maxlength="9" placeholder="Digite o seu RG">
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+
+        <br />
+        <!-- ENDEREÇO -->
+        <fieldset>
+            <legend>Dados de Endereço</legend>
+            <table cellspacing="10">
+                <tr>
+                    <td>
+                        <label for="rua">Rua:</label>
+                    </td>
+                    <td align="left">
+                        <input type="text" name="rua" placeholder="Digite a sua rua">
+                    </td>
+                    <td>
+                        <label for="numero">Numero:</label>
+                    </td>
+                    <td align="left">
+                        <input type="text" name="numero" size="4" class="box" placeholder="Digite o número da sua casa"
+                            pattern="[0-9]+$">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="bairro">Bairro: </label>
+                    </td>
+                    <td align="left">
+                        <input type="text" name="bairro" maxlength="20" placeholder="Digite o seu bairro">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="cidade">Cidade: </label>
+                    </td>
+                    <td align="left">
+                        <input type="text" name="cidade" placeholder="Digite a sua cidade">
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <br />
+
+        <!-- DADOS DE LOGIN -->
+        <fieldset>
+            <legend>Dados de login</legend>
+            <table cellspacing="10">
+                <tr>
+                    <td>
+                        <label for="email">E-mail: </label>
+                    </td>
+                    <td align="left">
+                        <input type="text" name="email" placeholder="Digite seu e-mail">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="login">Login de usuário: </label>
+                    </td>
+                    <td align="left">
+                        <input type="text" name="login" placeholder="Digite seu nome de usuário">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="senha">Senha: </label>
+                    </td>
+                    <td align="left">
+                        <input type="password" name="senha" placeholder="Digite uma senha">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="confirmaSenha">Confirme a senha: </label>
+                    </td>
+                    <td align="left">
+                        <input type="password" name="confirmaSenha" placeholder="Repita sua senha">
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <br />
+        <!-- Complementos de exemplo para formulário -->
+        <fieldset>
+            <legend>Complementos</legend>
+            <table cellspacing="10">
+                <tr>
+                    <td>
+                        <label for="esporte">Escreva ou selecione seu esporte predileto: </label>
+                    </td>
+                    <td align="left">
+                        <input list="esportes" class="box" name="esporte" id="esporte"
+                            placeholder="Digite ou escolha o esporte"><br>
+                        <datalist id="esportes">
+                            <option value="Fisiculturismo">
+                            <option value="Strongman">
+                            <option value="TaeKwondo">
+                            <option value="Aikido">
+                            <option value="Corrida">
+                            <option value="Basquete">
+                        </datalist>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="aniversario">Aniversário:</label>
+                    </td>
+                    <td><input type="date" id="aniversario" name="aniversario" max="2021-12-31" min="2000-01-01"></td>
+                </tr>
+            </table>
+        </fieldset>
+
+        <input type="submit" value="Enviar">
+        <input type="reset" value="Limpar Formulário">
+
+    </form>
+</body>
+
+</html>
